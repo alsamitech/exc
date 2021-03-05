@@ -1,0 +1,5 @@
+#!/bin/sh
+
+CC="gcc"
+
+$CC -c exmem.c -o exlib.o
