@@ -1,1 +1,17 @@
-EXC: A set of libraries
+EXC: A small library that brings features to C that it should have had in the first place.
+
+EXMem:
+EXMem contains basic C String and memory functions
+Functions:
+  atokl: Compound String Tokenizer
+  starts_with: Checks if a the first argument starts with the second argument's contents.
+
+EXArr:
+EXArr contains basic array structures and functions.
+Contetns of the arr_t struct:
+struct _ArrS{
+  void* arr;
+  long unsigned int len;
+}
+
+Created By Sami Alameddine
