@@ -2,4 +2,5 @@
 
 CC="gcc"
 
-$CC -c exmem.c -o exlib.o
+$CC -c exmem.c -o exmem.o
+$CC -c exarr.c
