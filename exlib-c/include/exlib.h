@@ -19,6 +19,7 @@ struct _Arr{
 
 #define ARR_FOREACH(ARRNM, INDEX)\
   for(long unsigned int INDEX=0;INDEX<ARRNM.len ;INDEX++)
+#define ifrange(var,least, most) if(var>least&&var<most)
 
 // Structure Types
 typedef struct _Arr arr_t;
