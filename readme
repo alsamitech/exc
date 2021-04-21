@@ -1,10 +1,12 @@
 EXC: A small library that brings features to C that it should have had in the first place.
 
-EXMem:
-EXMem contains basic C String and memory functions
+
+EXMem contains basic C String and memory functions, that should be included in the standard library anyway
 Functions:
   atokl: Compound String Tokenizer
   starts_with: Checks if a the first argument starts with the second argument's contents.
+  read_file: returns the contetns of a file as a char*, also gives back the length of the string, so no need to waste CPU cycles on using strlen, and you're not screwed when you read a binary file.
+  get_line: Similar to getline() in Modern C compilers, but works with older C compilers. Useful if you use tcc
 
 EXArr:
 EXArr contains basic array structures and functions.
