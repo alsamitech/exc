@@ -1,5 +1,21 @@
 #include "include/exlib.h"
 
+char* read_file(char* filenm, long unsigned int* len){
+  char* buf=0;
+  FILE* f=fopen(filenm, "rb");
+  if(f){
+    fseek(f,0,SEEK_END);
+    *len=ftell(f);
+    fseek(f,0,SEEK_SET);
+    buf=(char*)calloc(1, *len);
+    if(buf)
+      fread(buf, 1, *len, f);
+    fclose(f);
+  }
+  return buf;
+
+}
+
 char** atokl(char* InC, char* delim, long unsigned int* len){
   char** tok=(char**)malloc(2*sizeof(char*));
   //printf("%p\n", tok);
@@ -20,6 +36,43 @@ char** atokl(char* InC, char* delim, long unsigned int* len){
   return tok;
 }
 
+arr_t lines_from_file(char* filenm){
+     arr_t filedata;
+     filedata.arr=read_file(filenm, &filedata.len);
+     if(!filedata.arr){
+            arr_t a={0, 0};
+            return a;
+     }
+     arr_t arr;
+     arr.arr=(char*)atokl(filedata.arr, "\n", &arr.len);
+     return arr;
+}
+
+char* get_line(FILE* stream){
+    size_t bytes=0;
+    unsigned int capacity=64;
+    char* buf=malloc(capacity);
+    char c;
+#ifdef __unix__
+    while((c=fgetc(stream))!=EOF&&c!='\n')
+#else
+    while((c=fgetc(stream))!=EOF&&c!='\n'&&c!='\r')
+#endif // __unix__
+    {
+        bytes++;
+        if(bytes+1>=capacity){
+            capacity*=2;
+            buf=realloc(buf, capacity);
+            if(!buf){
+                return 0x0;
+            }
+        }
+        buf[bytes-1]=c;
+        
+    }
+    
+    return buf;
+}
 
 unsigned char starts_with(char* _in, char* startsw){
   long unsigned int fma=strlen(_in);
