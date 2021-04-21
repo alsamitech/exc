@@ -28,6 +28,11 @@ extern char** atokl(char* InC, char* delim, long unsigned int* len);
 
 extern unsigned char starts_with(char* _in, char* startsw);
 
+// It is reccomended to use a wrapper to contain what this returns.
+char* read_file(char* filenm, long unsigned int* len);
+char* get_line(FILE* stream);
+arr_t lines_from_file(char* filenm);
+  
 extern char arr_getbylast(arr_t, long unsigned int);
 
 long unsigned int arr_getbyteinstances(arr_t arr, char byte);
