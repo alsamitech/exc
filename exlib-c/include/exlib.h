@@ -20,6 +20,7 @@ struct _Arr{
 #define ARR_FOREACH(ARRNM, INDEX)\
   for(long unsigned int INDEX=0;INDEX<ARRNM.len ;INDEX++)
 #define ifrange(var,least, most) if(var>least&&var<most)
+#define dotimes(x, y) for(long unsigned int y=0;y<x;y++)
 
 // Structure Types
 typedef struct _Arr arr_t;
