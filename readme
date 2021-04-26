@@ -6,7 +6,9 @@ Functions:
   atokl: Compound String Tokenizer
   starts_with: Checks if a the first argument starts with the second argument's contents.
   read_file: returns the contetns of a file as a char*, also gives back the length of the string, so no need to waste CPU cycles on using strlen, and you're not screwed when you read a binary file.
-  get_line: Similar to getline() in Modern C compilers, but works with older C compilers. Useful if you use tcc
+  get_line: Allocates a string of the exact size of one line, and reads the line character by character.
+Definitions:
+  
 
 EXArr:
 EXArr contains basic array structures and functions.
