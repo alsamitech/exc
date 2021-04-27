@@ -8,7 +8,10 @@ Functions:
   read_file: returns the contetns of a file as a char*, also gives back the length of the string, so no need to waste CPU cycles on using strlen, and you're not screwed when you read a binary file.
   get_line: Allocates a string of the exact size of one line, and reads the line character by character.
 Definitions:
-  
+  ARR_FOREACH: makes a for-each loop for an arr_t
+  ifrange: an if statement that executes the code within it if var is at least <least> and at most, <most>
+  dotimes: Executes what's within the loop x times with y index vaiable
+  s_foreach: makes a for-each loop for every character in a string, minus the null termination character at the end of the string.
 
 EXArr:
 EXArr contains basic array structures and functions.
