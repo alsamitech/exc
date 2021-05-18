@@ -17,22 +17,30 @@ char* read_file(char* filenm, long unsigned int* len){
 }
 
 char** atokl(char* InC, char* delim, long unsigned int* len){
-  char** tok=(char**)malloc(2*sizeof(char*));
+  long unsigned int capacity=32;
+  char** tok=(char**)malloc(capacity*sizeof(char**));
   //printf("%p\n", tok);
 
   tok[0]=strtok(strdup(InC), delim);
   {
-  int i=1;
+  long unsigned int i=1;
   while(tok[i-1]!=NULL){
-    tok=(char**)realloc(tok, (i+1)*sizeof(char*));
+    if(i+2>=capacity){
+        capacity+=32;
+        tok=(char**)realloc(tok, capacity*sizeof(char**));
+        if(!tok){
+                // something failed
+                return 0x0;
+        }
+    }
     tok[i]=strtok(NULL, delim);
     //printf("%p\n", tok[i]);
     i++;
-  
+
   }
   *len=i;
   /*EBRACE*/}
-   
+
   return tok;
 }
 
