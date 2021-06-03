@@ -56,6 +56,12 @@ arr_t lines_from_file(char* filenm){
      return arr;
 }
 
+size_t ptvec_len(void** ptvec){
+    size_t len;
+    for(len=0;ptvec[len];len++){}
+    return len;
+}
+
 char* get_line(FILE* stream){
     size_t bytes=0;
     unsigned int capacity=64;
