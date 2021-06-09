@@ -1,6 +1,8 @@
 #!/bin/sh
 
-CC="gcc"
+# Change the compiler to whatever you want, doesn't matter
+CC="cc"
+CFLAGS="-Wall -Os"
 
-$CC -c exmem.c -o exmem.o
-$CC -c exarr.c
+$CC -c exmem.c -o exmem.o $CFLAGS
+$CC -c exarr.c $CFLAGS
