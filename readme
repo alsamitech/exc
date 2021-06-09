@@ -7,6 +7,7 @@ Functions:
   starts_with: Checks if a the first argument starts with the second argument's contents.
   read_file: returns the contetns of a file as a char*, also gives back the length of the string, so no need to waste CPU cycles on using strlen, and you're not screwed when you read a binary file.
   get_line: Allocates a string of the exact size of one line, and reads the line character by character.
+  ptvec: Gets the length of a null-terminated pointer vector (see https://www.als.fyi/documentation/articles/null_term_arrays.html for more information about null-terminated vectors)
 Definitions:
   ARR_FOREACH: makes a for-each loop for an arr_t
   ifrange: an if statement that executes the code within it if var is at least <least> and at most, <most>
@@ -24,5 +25,7 @@ struct _ArrS{
 Functions:
   arr_getbylast: gets the last element in an arr_t, minus the offset (for a CString, use 1 as the offset to get the last non-null char)
 
+Compile:
+  You don't even need make to compile exc! It simply takes two commands to compile manually, or you can just use "sh build" to build the library.
 
 Created By Sami Alameddine
