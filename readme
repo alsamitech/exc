@@ -22,7 +22,7 @@ struct _ArrS{
   long unsigned int len;
 }
 
-Functions:
+Definitions:
   arr_getbylast: gets the last element in an arr_t, minus the offset (for a CString, use 1 as the offset to get the last non-null char)
 
 Compile:
