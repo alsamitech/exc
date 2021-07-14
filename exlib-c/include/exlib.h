@@ -27,22 +27,22 @@ struct _Arr{
 // Structure Types
 typedef struct _Arr arr_t;
 
-extern char** atokl(char* InC, char* delim, long unsigned int* len);
-
-extern unsigned char starts_with(char* _in, char* startsw);
-
 // It is reccomended to use a wrapper to contain what this returns. (arr_t)
-char* read_file(char* filenm, long unsigned int* len);
+char* read_file(const char* const filenm, long unsigned int* len);
 char* get_line(FILE* stream);
-arr_t lines_from_file(char* filenm);
+arr_t lines_from_file(const char* const filenm);
   
-extern char arr_getbylast(arr_t, long unsigned int);
+#define arr_getbylast(arr,offset) arr.arr[arr.len-offset]
 
-long unsigned int arr_getbyteinstances(arr_t arr, char byte);
+long unsigned int arr_getbyteinstances(const arr_t arr,const char byte);
 
 arr_t arr_combinde(arr_t arr1, arr_t arr2);
   
-size_t ptvec_len(void** ptvec);
+size_t ptvec_len(const void** const ptvec);
+
+extern char** atokl(const char* const InC,const char* const delim, long unsigned int* len);
+
+extern unsigned char starts_with(char* _in, char* startsw);
 
 #ifdef __cplusplus
 }

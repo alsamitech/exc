@@ -1,6 +1,6 @@
 #include "include/exlib.h"
 
-char* read_file(char* filenm, long unsigned int* len){
+char* read_file(const char* const filenm, long unsigned int* len){
   char* buf=0;
   FILE* f=fopen(filenm, "rb");
   if(f){
@@ -16,26 +16,27 @@ char* read_file(char* filenm, long unsigned int* len){
 
 }
 
-char** atokl(char* InC, char* delim, long unsigned int* len){
-  long unsigned int capacity=32;
+char** atokl(const char* const InC, const char* const delim, long unsigned int* len){
+	// eight as that provides room for small splitting operations
+  long unsigned int capacity=8;
   char** tok=(char**)malloc(capacity*sizeof(char**));
-  //printf("%p\n", tok);
+	if(!tok)return 0x0;
 
   tok[0]=strtok(strdup(InC), delim);
   {
   long unsigned int i=1;
   while(tok[i-1]!=NULL){
     if(i+2>=capacity){
-        capacity+=32;
+        capacity*=2;
         tok=(char**)realloc(tok, capacity*sizeof(char**));
         if(!tok){
-                // something failed
-                return 0x0;
+          // something failed
+					free(tok[0]);
+					free(tok);
+          return 0x0;
         }
     }
-    tok[i]=strtok(NULL, delim);
-    //printf("%p\n", tok[i]);
-    i++;
+    tok[i++]=strtok(NULL, delim);
 
   }
   *len=i;
@@ -44,21 +45,20 @@ char** atokl(char* InC, char* delim, long unsigned int* len){
   return tok;
 }
 
-arr_t lines_from_file(char* filenm){
+arr_t lines_from_file(const char* const filenm){
      arr_t filedata;
      filedata.arr=read_file(filenm, &filedata.len);
-     if(!filedata.arr){
-            arr_t a={0, 0};
-            return a;
-     }
+     if(!filedata.arr)
+            return filedata;
+     
      arr_t arr;
      arr.arr=(char*)atokl(filedata.arr, "\n", &arr.len);
      return arr;
 }
 
-size_t ptvec_len(void** ptvec){
-    size_t len;
-    for(len=0;ptvec[len];len++){}
+size_t ptvec_len(const void** const ptvec){
+    size_t len=0;
+    while(ptvec[len++]);
     return len;
 }
 
@@ -77,9 +77,8 @@ char* get_line(FILE* stream){
         if(bytes+1>=capacity){
             capacity*=2;
             buf=realloc(buf, capacity);
-            if(!buf){
+            if(!buf)
                 return 0x0;
-            }
         }
         buf[bytes-1]=c;
         

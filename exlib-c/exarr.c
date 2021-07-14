@@ -1,15 +1,15 @@
 #include "include/exlib.h"
 
 
-char arr_getbylast(arr_t arr, long unsigned int offset){
+/*char arr_getbylast(const arr_t arr, const long unsigned int offset){
   return arr.arr[arr.len-offset];
-}
+}*/
 
-long unsigned int arr_getbyteinstances(arr_t arr, char byte){
+long unsigned int arr_getbyteinstances(const arr_t arr,const char byte){
   long unsigned int inst=0;
-  for(long unsigned int i=0;i<arr.len; i++){
+  for(long unsigned int i=0;i<arr.len; i++)
       if(arr.arr[i]==byte) inst++;
-  }
+  
   return inst;
 }
 
